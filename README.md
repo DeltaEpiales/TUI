@@ -25,7 +25,7 @@ A powerful, lightweight text editor written in x86 Assembly for Linux systems. F
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/assembly-text-editor.git
+git clone https://github.com/DeltaEpiales/TUI.git
 cd assembly-text-editor
 ```
 
