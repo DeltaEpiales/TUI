@@ -1,6 +1,7 @@
 # Assembly Text Editor
 
 A powerful, lightweight text editor written in x86 Assembly for Linux systems. Features real-time syntax highlighting, full TUI interface, and advanced editing capabilities.
+(NOTE: this is still very early in development - expect bugs and some issues)
 
 ## Features
 
