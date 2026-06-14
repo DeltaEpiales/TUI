@@ -1,96 +1,33 @@
-# Assembly Text Editor
+# AssemblIDE
+An incredibly lightweight, blazing fast Native Windows IDE written entirely in raw x64 Assembly.
 
-A powerful, lightweight text editor written in x86 Assembly for Linux systems. Features real-time syntax highlighting, full TUI interface, and advanced editing capabilities.
-(NOTE: this is still very early in development - expect bugs and some issues)
+![Dark Mode UI](media__1781402061073.png)
 
 ## Features
 
-- Full screen TUI (Text User Interface)
-- Real-time syntax highlighting for Assembly
-- Line numbering
-- Copy/paste buffer
-- Find/replace functionality
-- Undo/redo stack
-- File save/load operations
-- Status bar with command hints
-- Raw terminal handling
-- Error handling with status messages
+- **Blazing Fast Assembly Engine**: Compiles and runs locally on your CPU with zero abstraction overhead. The entire application executable and its graphics engine fit in a fraction of a megabyte.
+- **Universal Syntax Tokenizer**: Features a mathematically decoupled Tokenizer engine that dynamically highlights syntax on the fly. It includes a custom Python code generator (`gen_highlight.py`) that pre-compiles hundreds of assembly directives, registers, and instructions directly into a hyper-optimized native `.obj` file for zero-overhead parsing!
+- **Multi-Tab Interface**: Swap instantaneously between two active buffers using "TAB 1" and "TAB 2" controls. Tab state (scroll, cursor, selection, and undo history) is aggressively swapped in less than a millisecond using `rep movsq` native memory instructions.
+- **Sublime-Style Keyboard Workflows**:
+  - `Ctrl + C` / `Ctrl + X` dynamically cuts and copies entire lines perfectly seamlessly if no text is selected.
+  - `Ctrl + V` integrates natively with the Windows Clipboard.
+  - `Ctrl + Left/Right` utilizes the Universal Tokenizer to effortlessly leap your cursor over entire words.
+  - `Ctrl + S / O / N` native workspace commands.
+- **Native File Navigator**: Includes a built-in Side Panel that natively hooks `kernel32` directory APIs. Navigate seamlessly into subdirectories by simply clicking on them.
+- **Embedded Environment**:
+  - `[OPEN DIR]`: Instantly hooks the Windows Open File dialog and snaps your entire IDE workspace to that file's directory.
+  - `[TERMINAL]`: Need to install packages? Clicking `[TERMINAL]` spawns a detached, fully native Windows Command Prompt perfectly bound to your current working directory.
+  - **Embedded Output Pane**: Click `[RUN PY]` or `[RUN ASM]` to dynamically spin up background compiler threads, routing their exact output directly to the IDE's built-in console window without crashing or freezing the graphics loop!
+- **Dynamic UI**: Real-time Line Number tracking (powered by a custom Assembly integer-to-string subroutine), fluid active-line highlighting, dynamic status bars, and mouse-wheel tracked vertical scrolling. 
 
 ## Requirements
-
-- Linux operating system (x86/x86_64)
+- Windows 10/11 x64
 - NASM (Netwide Assembler)
-- GNU Linker (ld)
+- MinGW/GCC (for linking)
 
-## Installation
-
-1. Clone the repository:
-```bash
-git clone https://github.com/DeltaEpiales/TUI.git
-cd TUI
+## Building & Running
+Run the provided `build.bat` script to assemble and link the executable natively.
+```cmd
+.\build.bat
+.\editor.exe
 ```
-
-2. Compile the editor:
-```bash
-nasm -f elf editor.asm && ld -m elf_i386 editor.o -o editor
-```
-
-3. Make it executable:
-```bash
-chmod +x editor
-```
-
-4. (Optional) Install system-wide:
-```bash
-sudo cp editor /usr/local/bin/
-```
-
-## Usage
-
-Start the editor:
-```bash
-./editor [filename]
-```
-
-### Keyboard Commands
-
-- `F1`: Show help
-- `F2`: Save file
-- `F3`: Find text
-- `F4`: Replace text
-- `F5`: Exit editor
-- Arrow keys: Navigate text
-- `ESC`: Cancel current operation
-
-## Building from Source
-
-Detailed build instructions:
-
-1. Install NASM:
-```bash
-# Debian/Ubuntu
-sudo apt-get install nasm
-
-# Fedora
-sudo dnf install nasm
-
-# Arch Linux
-sudo pacman -S nasm
-```
-
-2. Compile:
-```bash
-nasm -f elf editor.asm && ld -m elf_i386 editor.o -o editor
-```
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
