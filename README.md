@@ -2,7 +2,7 @@
 
 A lightweight, high-performance native desktop code editor written in pure **x86-64 NASM Assembly** for Windows, built directly on Win32 and GDI APIs with zero C runtime (CRT) overhead.
 
-![Dark Mode UI](media__1781402061073.png)
+![AssemblIDE Dark Mode UI](media_preview.png)
 
 ---
 
